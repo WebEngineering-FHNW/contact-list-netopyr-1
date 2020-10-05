@@ -26,4 +26,17 @@ class IndexIT {
         assertThat(page.getContactDetails()).isEmpty();
         assertThat(page.getPlaceHolder()).isNotEmpty();
     }
+
+    @Test
+    void clickingNameShouldShowContactDetails() {
+        // given
+        final IndexPage page = IndexPage.to(driver, port);
+
+        // when
+        page.getContactLinks().get(3).click();
+
+        // then
+        assertThat(page.getContactDetails()).isNotEmpty();
+        assertThat(page.getPlaceHolder()).isEmpty();
+    }
 }

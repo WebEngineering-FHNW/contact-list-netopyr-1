@@ -28,11 +28,18 @@ public class IndexPage {
     @FindBy(id = "placeholder")
     private List<WebElement> placeHolder;
 
+    @FindBy(className = "contact-link")
+    private List<WebElement> contactLinks;
+
     public List<WebElement> getContactDetails() {
         return contactDetails;
     }
 
     public List<WebElement> getPlaceHolder() {
         return placeHolder;
+    }
+
+    public List<WebElement> getContactLinks() {
+        return contactLinks;
     }
 }
