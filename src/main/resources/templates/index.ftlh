@@ -14,6 +14,11 @@
 
 <nav>
     <!-- Show a list of all contacts here -->
+    <ul>
+        <#list contacts as contact>
+            <li><a href="?select=${contact.id}">${contact.name}</a></li>
+        </#list>
+    </ul>
 </nav>
 
 <main>
