@@ -23,6 +23,7 @@
 
 <main>
     <!-- Show the details of the selected contact here -->
+    <#if selected??>
     <table>
         <tbody>
         <tr>
@@ -43,6 +44,9 @@
         </tr>
         </tbody>
     </table>
+    <#else>
+        <p>Bitte wählen Sie einen Kontakt aus</p>
+    </#if>
 </main>
 
 </body>
