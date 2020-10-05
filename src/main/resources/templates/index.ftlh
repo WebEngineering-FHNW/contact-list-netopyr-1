@@ -30,7 +30,7 @@
 
     <!-- Show the details of the selected contact here -->
     <#if selected??>
-    <table>
+    <table id="contact-details-table">
         <tbody>
         <@row "Vorname" selected.firstName/>
         <@row "Nachname" selected.lastName/>
@@ -39,7 +39,7 @@
         </tbody>
     </table>
     <#else>
-        <p>Bitte wählen Sie einen Kontakt aus</p>
+        <p id="placeholder">Bitte wählen Sie einen Kontakt aus</p>
     </#if>
 </main>
 
