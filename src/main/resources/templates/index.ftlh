@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <title>Contact-List</title>
@@ -14,28 +14,45 @@
     <!-- Show a list of all contacts here -->
     <ul>
         <#list contacts as contact>
-            <li><a class="contact-link" href="?select=${contact.id}">${contact.name}</a></li>
+            <li class="${(selected?? && selected.id == contact.id)?then('selected','')}">
+                <a class="contact-link" href="?select=${contact.id}">${contact.name}</a>
+            </li>
         </#list>
     </ul>
 </nav>
 
 <main>
 
-    <#macro row label value>
+    <#macro row label id value>
         <tr>
             <th>${label}:</th>
-            <td>${value}</td>
+            <td id="${id}-value">${value}</td>
         </tr>
+    </#macro>
+
+    <#macro listRow label id values>
+        <#list values>
+            <tr>
+                <th>${label}:</th>
+                <td id="${id}-value">
+                    <ul>
+                        <#items as value><li>${value}</li></#items>
+                    </ul>
+                </td>
+            </tr>
+        </#list>
     </#macro>
 
     <!-- Show the details of the selected contact here -->
     <#if selected??>
     <table id="contact-details-table">
         <tbody>
-        <@row "Vorname" selected.firstName/>
-        <@row "Nachname" selected.lastName/>
-        <@row "Email" selected.email[0]!"Keine Email"/>
-        <@row "Telefon" selected.phone[0]!/>
+        <@row "Vorname" "first-name" selected.firstName/>
+        <@row "Nachname" "last-name" selected.lastName/>
+        <@listRow "Email" "email" selected.email/>
+        <@listRow "Telefon" "phone" selected.phone/>
+        <@row "Beruf" "job-title" selected.jobTitle!/>
+        <@row "Firma" "company" selected.company!/>
         </tbody>
     </table>
     <#else>
